@@ -52,6 +52,7 @@
        77  ind                                     pic 9(02).
        77  aux_ind                                 pic 9(02).
        77  controle                                pic 9(05).
+       77  aux2                                    pic x(15).
        77  aux                                     pic 9(05)v99.
        77  menu                                    pic x(01).
 
@@ -175,9 +176,27 @@
       *perform para comparar cada custo beneficio e ordena-los
            perform until ind = 20 or ind = aux_ind
                if preco_cm2(ind) > preco_cm2(ind + 1) then
+
+                   move nome(ind + 1)      to aux2
+                   move nome(ind)          to nome(ind + 1)
+                   move aux2               to nome(ind)
+
+                   move diametro(ind + 1)  to aux
+                   move diametro(ind)      to diametro(ind + 1)
+                   move aux                to diametro(ind)
+
+                   move areapizza(ind + 1) to aux
+                   move areapizza(ind)     to areapizza(ind + 1)
+                   move aux                to areapizza(ind)
+
+                   move preco(ind + 1)     to aux
+                   move preco(ind)         to preco(ind + 1)
+                   move aux                to preco(ind)
+
                    move preco_cm2(ind + 1) to aux
                    move preco_cm2(ind)     to preco_cm2(ind + 1)
                    move aux                to preco_cm2(ind)
+
 
                    move 1 to controle
                end-if
